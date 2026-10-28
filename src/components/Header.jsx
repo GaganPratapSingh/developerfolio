@@ -28,7 +28,7 @@ export default function Header() {
       <div className="container header-inner">
         <a href="#" className="logo" onClick={closeMenu}>
           <img
-            src="/developerfolio/logo.png"
+            src="/logo.png"
             alt="Gagan Pratap Singh"
             width="220"
             height="60"
