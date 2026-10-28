@@ -1,34 +1,45 @@
-import { useEffect, useState } from 'react'
-import { navLinks, site } from '../data/portfolio'
+import { useEffect, useState } from "react";
+import { navLinks, site } from "../data/portfolio";
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [menuOpen])
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
-  const closeMenu = () => setMenuOpen(false)
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <header className={`site-header ${scrolled ? 'site-header--scrolled' : ''}`}>
+    <header
+      className={`site-header ${scrolled ? "site-header--scrolled" : ""}`}
+    >
       <div className="container header-inner">
         <a href="#" className="logo" onClick={closeMenu}>
-          <span className="logo-mark" aria-hidden="true" />
-          {site.name.split(' ')[0]}
+          <img
+            src="/developerfolio/logo.png"
+            alt="Gagan Pratap Singh"
+            width="220"
+            height="60"
+            style={{
+              width: "400px",
+              height: "110px",
+              objectFit: "contain",
+              display: "block",
+            }}
+          />
         </a>
-
         <button
           type="button"
           className="nav-toggle"
@@ -43,7 +54,7 @@ export default function Header() {
 
         <nav
           id="primary-nav"
-          className={`nav ${menuOpen ? 'nav--open' : ''}`}
+          className={`nav ${menuOpen ? "nav--open" : ""}`}
           aria-label="Primary"
         >
           <ul className="nav-list">
@@ -55,11 +66,15 @@ export default function Header() {
               </li>
             ))}
           </ul>
-          <a href="#contact" className="btn btn--small nav-cta" onClick={closeMenu}>
+          <a
+            href="#contact"
+            className="btn btn--small nav-cta"
+            onClick={closeMenu}
+          >
             Get in touch
           </a>
         </nav>
       </div>
     </header>
-  )
+  );
 }
